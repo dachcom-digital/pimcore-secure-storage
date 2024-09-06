@@ -1,0 +1,44 @@
+{
+    "name": "dachcom-digital/secure-storage",
+    "type": "pimcore-bundle",
+    "license": "GPL-3.0-or-later",
+    "description": "Pimcore Security Storage Bundle",
+    "keywords": ["pimcore", "security", "flystem", "encryption"],
+    "homepage": "https://github.com/dachcom-digital/pimcore-secure-storage",
+    "authors": [
+        {
+            "name": "DACHCOM.DIGITAL Stefan Hagspiel",
+            "email": "shagspiel@dachcom.ch",
+            "homepage": "http://www.dachcom.com/",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SecureStorageBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "extra": {
+        "pimcore": {
+            "bundles": [
+                "SecureStorageBundle\\SecureStorageBundle"
+            ]
+        }
+    },
+    "require": {
+        "pimcore/pimcore": "^11.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "^5.0",
+        "codeception/module-symfony": "^3.1",
+        "codeception/module-webdriver": "^4.0",
+        "phpstan/phpstan": "^1.0",
+        "phpstan/phpstan-symfony": "^1.0",
+        "symplify/easy-coding-standard": "^9.0"
+    }
+}
