@@ -214,6 +214,10 @@ class OpenSslEncrypter extends php_user_filter implements EncrypterInterface
                 $this->iv = substr($this->buffer, 0, $this->blockSize);
                 $this->buffer = substr($this->buffer, $this->blockSize); // Remove IV from buffer
             }
+
+            return;
         }
+
+        throw new \Exception(sprintf('Unknown mode %s"', $this->mode));
     }
 }
