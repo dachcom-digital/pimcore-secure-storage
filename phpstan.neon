@@ -7,8 +7,3 @@ parameters:
     symfony:
         container_xml_path: %currentWorkingDirectory%/var/cache/test/TestKernelTestDebugContainer.xml
         constant_hassers: false
-    excludePaths:
-        # as long we don't install the dependencies :(
-        - src/MetaData/Extractor/ThirdParty/News/EntryMetaExtractor.php
-        - src/MetaData/Extractor/ThirdParty/CoreShop/OGExtractor.php
-        - src/MetaData/Extractor/ThirdParty/CoreShop/TitleDescriptionExtractor.php

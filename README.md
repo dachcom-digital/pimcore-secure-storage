@@ -6,7 +6,7 @@
 
 | Release | Supported Pimcore Versions | Supported Symfony Versions | Release Date | Maintained     | Branch |
 |---------|----------------------------|----------------------------|--------------|----------------|--------|
-| **1.x** | `^11.3`                    | `6.2`                      | --           | Feature Branch | master |
+| **1.x** | `^11.3`                    | `^6.4`                     | --           | Feature Branch | master |
 
 
 ## Installation
