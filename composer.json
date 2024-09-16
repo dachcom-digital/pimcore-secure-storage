@@ -31,7 +31,8 @@
         }
     },
     "require": {
-        "pimcore/pimcore": "^11.0"
+        "ext-openssl": "*",
+        "pimcore/pimcore": "^11.3"
     },
     "require-dev": {
         "codeception/codeception": "^5.0",
@@ -39,6 +40,6 @@
         "codeception/module-webdriver": "^4.0",
         "phpstan/phpstan": "^1.0",
         "phpstan/phpstan-symfony": "^1.0",
-        "symplify/easy-coding-standard": "^9.0"
+        "symplify/easy-coding-standard": "~12.0.0"
     }
 }

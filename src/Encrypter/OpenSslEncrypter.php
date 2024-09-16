@@ -86,6 +86,7 @@ class OpenSslEncrypter extends php_user_filter implements EncrypterInterface
         $this->mode = match ($this->filtername) {
             self::FILTERNAME_PREFIX . self::MODE_ENCRYPT => self::MODE_ENCRYPT,
             self::FILTERNAME_PREFIX . self::MODE_DECRYPT => self::MODE_DECRYPT,
+            default => ''
         };
 
         return true;
@@ -112,6 +113,7 @@ class OpenSslEncrypter extends php_user_filter implements EncrypterInterface
                 $processed = match ($this->mode) {
                     self::MODE_ENCRYPT => $this->encryptChunkData($chunk),
                     self::MODE_DECRYPT => $this->decryptChunkData($chunk),
+                    default => false
                 };
 
                 if ($processed === false) {
@@ -134,6 +136,7 @@ class OpenSslEncrypter extends php_user_filter implements EncrypterInterface
         $processed = match ($this->mode) {
             self::MODE_ENCRYPT => $this->encryptClosingData(),
             self::MODE_DECRYPT => $this->decryptClosingData(),
+            default => false
         };
 
         if ($processed === false) {

@@ -6,7 +6,7 @@
 
 | Release | Supported Pimcore Versions | Supported Symfony Versions | Release Date | Maintained     | Branch |
 |---------|----------------------------|----------------------------|--------------|----------------|--------|
-| **1.x** | `^11.2`                    | `6.2`                      | --           | Feature Branch | master |
+| **1.x** | `^11.3`                    | `^6.4`                     | --           | Feature Branch | master |
 
 
 ## Installation
@@ -27,6 +27,9 @@ return [
 ## Description
 Encrypt/Decrypt assets on the fly!
 
+## Required PHP Extensions
+- openssl
+
 ## Usage
 
 > [!CAUTION]  
@@ -44,6 +47,8 @@ Encrypt/Decrypt assets on the fly!
 
 ## Configuration
 
+### File Encryption
+
 ```yaml
 secure_storage:
     encrypter:
@@ -54,12 +59,8 @@ secure_storage:
     secured_fly_system_storages:
 
         # form builder (if you want to encrypt form builder data)
-        -
-            storage: form_builder.chunk.storage
-            paths: null
-        -
-            storage: form_builder.files.storage
-            paths: null
+        - storage: form_builder.chunk.storage
+        - storage: form_builder.files.storage
 
         # pimcore
         -
@@ -69,8 +70,30 @@ secure_storage:
                 - /formdata
 ```
 
-## Custom Encrypter
+#### Custom Encrypter
 TBD
+
+***
+
+### Asset Protection
+
+```yaml
+secure_storage:
+
+    pimcore_asset_protection:
+
+        # protects:
+        # - public/var/assets [pimcore.asset.storage]
+        # - public/tmp/asset-cache [pimcore.asset_cache.storage]
+        # - public/tmp/thumbnails [pimcore.thumbnail.storage]
+        htaccess_protection_public_directories:
+            paths:
+                - /secure-storage
+
+        omit_backend_search_indexing:
+            paths:
+                - /secure-storage
+```
 
 ***
 
