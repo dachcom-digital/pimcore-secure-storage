@@ -1,0 +1,6 @@
+framework:
+    messenger:
+        buses:
+            messenger.bus.pimcore-core:
+                middleware:
+                    - SecureStorageBundle\Messenger\Middleware\GuardMiddleware

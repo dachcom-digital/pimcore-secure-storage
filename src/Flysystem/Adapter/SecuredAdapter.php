@@ -26,7 +26,7 @@ class SecuredAdapter implements FilesystemAdapter
             return true;
         }
 
-        foreach($this->securedPaths as $securedPath) {
+        foreach ($this->securedPaths as $securedPath) {
             if (str_starts_with($path, ltrim($securedPath, '/'))) {
                 return true;
             }
@@ -47,6 +47,12 @@ class SecuredAdapter implements FilesystemAdapter
 
     public function write(string $path, string $contents, Config $config): void
     {
+        if ($config->get('bypass_secured_adapter') === true) {
+            $this->inner->write($path, $contents, $config);
+
+            return;
+        }
+
         if (!$this->isSecuredPath($path)) {
             $this->inner->write($path, $contents, $config);
 
@@ -64,6 +70,12 @@ class SecuredAdapter implements FilesystemAdapter
 
     public function writeStream(string $path, $contents, Config $config): void
     {
+        if ($config->get('bypass_secured_adapter') === true) {
+            $this->inner->write($path, $contents, $config);
+
+            return;
+        }
+
         if (!$this->isSecuredPath($path)) {
             $this->inner->writeStream($path, $contents, $config);
 

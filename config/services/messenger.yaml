@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    SecureStorageBundle\Messenger\Middleware\GuardMiddleware:
+        arguments:
+            $secureStorageConfig: '%pimcore.secure_storage.config%'
+        tags:
+            - { name: messenger.middleware }

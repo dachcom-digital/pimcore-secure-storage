@@ -1,0 +1,14 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    SecureStorageBundle\Maintenance\ProtectPublicDirectoriesTask:
+        autowire: true
+        autoconfigure: true
+        arguments:
+            $secureStorageConfig: '%pimcore.secure_storage.config%'
+            $locator: !tagged_locator { tag: flysystem.storage }
+        tags:
+            - { name: pimcore.maintenance.task, type: secure_storage_protect_public_directories }

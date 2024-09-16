@@ -31,7 +31,7 @@
         }
     },
     "require": {
-        "pimcore/pimcore": "^11.0"
+        "pimcore/pimcore": "^11.3"
     },
     "require-dev": {
         "codeception/codeception": "^5.0",
