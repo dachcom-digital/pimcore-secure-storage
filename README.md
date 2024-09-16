@@ -27,6 +27,9 @@ return [
 ## Description
 Encrypt/Decrypt assets on the fly!
 
+## Required PHP Extensions
+- openssl
+
 ## Usage
 
 > [!CAUTION]  

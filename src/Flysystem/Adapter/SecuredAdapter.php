@@ -181,9 +181,4 @@ class SecuredAdapter implements FilesystemAdapter
     {
         $this->inner->copy($source, $destination, $config);
     }
-
-    public function __call(string $method, array $parameters)
-    {
-        return $this->forwardCallTo($this->inner, $method, $parameters);
-    }
 }
