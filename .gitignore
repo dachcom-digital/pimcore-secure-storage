@@ -40,10 +40,8 @@ atlassian-ide-plugin.xml
 .project
 ehthumbs.db
 Thumbs.db
-Vagrantfile
-.vagrant
 php-cgi.core
-.sass-cache
+/vendor/
 
 # codeception (only stage *.dist.yml config files)
 /codeception.yml
