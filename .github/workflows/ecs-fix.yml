@@ -26,24 +26,21 @@ jobs:
                 run: composer install --no-interaction --no-scripts
 
             -   name: Run ECS
-                run: vendor/bin/ecs check --fix src --config src/ecs.php
-
-            -   name: Create Pull Request
-                uses: peter-evans/create-pull-request@v4
-                with:
-                    commit-message: '[CS] Refactor'
-                    author: DACHCOM Bot <bot@dachcom.ch>
-                    title: '[CS] Refactor'
-                    body: |
-                        This PR has been generated automatically to fix code-styles
-                    labels: |
-                        Enhancement
-                    branch: coding-standard/refactor-${{ matrix.branch }}
-                    delete-branch: true
-                    base: ${{ matrix.branch }}
-
-
-            -   name: Easy Coding Standard Check
-                continue-on-error: true
                 run: |
-                    vendor/bin/ecs check ${{ github.workspace }}/lib/test-bundle/src --config ${{ github.workspace }}/lib/test-bundle/ecs.php
+                    ls -la
+                    ls -la src
+                    vendor/bin/ecs check --fix src --config src/ecs.php
+
+            #-   name: Create Pull Request
+            #    uses: peter-evans/create-pull-request@v4
+            #    with:
+            #        commit-message: '[CS] Refactor'
+            #        author: DACHCOM Bot <bot@dachcom.ch>
+            #        title: '[CS] Refactor'
+            #        body: |
+            #            This PR has been generated automatically to fix code-styles
+            #        labels: |
+            #            Enhancement
+            #        branch: coding-standard/refactor-${{ matrix.branch }}
+            #        delete-branch: true
+            #        base: ${{ matrix.branch }}
