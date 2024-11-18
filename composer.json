@@ -1,7 +1,10 @@
 {
     "name": "dachcom-digital/secure-storage",
     "type": "pimcore-bundle",
-    "license": "GPL-3.0-or-later",
+        "license": [
+        "GPL-3.0-or-later",
+        "DCL"
+    ],
     "description": "Pimcore Security Storage Bundle",
     "keywords": ["pimcore", "security", "flystem", "encryption"],
     "homepage": "https://github.com/dachcom-digital/pimcore-secure-storage",
