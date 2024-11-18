@@ -42,6 +42,7 @@ ehthumbs.db
 Thumbs.db
 php-cgi.core
 /vendor/
+/composer.lock
 
 # codeception (only stage *.dist.yml config files)
 /codeception.yml
