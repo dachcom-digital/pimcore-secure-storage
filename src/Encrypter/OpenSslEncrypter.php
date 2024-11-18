@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * This source file is available under two different licenses:
+ *   - GNU General Public License version 3 (GPLv3)
+ *   - DACHCOM Commercial License (DCL)
+ * Full copyright and license information is available in
+ * LICENSE.md which is distributed with this source code.
+ *
+ * @copyright  Copyright (c) DACHCOM.DIGITAL AG (https://www.dachcom-digital.com)
+ * @license    GPLv3 and DCL
+ */
+
 namespace SecureStorageBundle\Encrypter;
 
 use php_user_filter;
@@ -12,21 +23,17 @@ class OpenSslEncrypter extends php_user_filter implements EncrypterInterface
     private const MODE_ENCRYPT = '.encrypt';
     private const MODE_DECRYPT = '.decrypt';
     private const CHUNK_SIZE = 8192;
-
     private const SUPPORTED_CIPHERS = [
         'aes-128-cbc',
         'aes-256-cbc',
         'aes-128-gcm',
         'aes-256-gcm',
     ];
-
     private const OPENSSL_OPTIONS = OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING;
 
     private static bool $filterRegistered = false;
-
     private string $mode;
     private int $blockSize;
-
     private string $buffer;
     private ?string $iv;
 
@@ -86,7 +93,7 @@ class OpenSslEncrypter extends php_user_filter implements EncrypterInterface
         $this->mode = match ($this->filtername) {
             self::FILTERNAME_PREFIX . self::MODE_ENCRYPT => self::MODE_ENCRYPT,
             self::FILTERNAME_PREFIX . self::MODE_DECRYPT => self::MODE_DECRYPT,
-            default => ''
+            default                                      => ''
         };
 
         return true;
@@ -101,19 +108,17 @@ class OpenSslEncrypter extends php_user_filter implements EncrypterInterface
         }
 
         while ($bucket = stream_bucket_make_writeable($in)) {
-
             $this->buffer .= $bucket->data;
             $consumed += strlen($bucket->data);
 
             while (strlen($this->buffer) >= self::CHUNK_SIZE) {
-
                 $chunk = substr($this->buffer, 0, self::CHUNK_SIZE - (self::CHUNK_SIZE % $this->blockSize)); // align chunk to block size
                 $this->buffer = substr($this->buffer, self::CHUNK_SIZE - (self::CHUNK_SIZE % $this->blockSize)); // keep remainder in buffer
 
                 $processed = match ($this->mode) {
                     self::MODE_ENCRYPT => $this->encryptChunkData($chunk),
                     self::MODE_DECRYPT => $this->decryptChunkData($chunk),
-                    default => false
+                    default            => false
                 };
 
                 if ($processed === false) {
@@ -136,7 +141,7 @@ class OpenSslEncrypter extends php_user_filter implements EncrypterInterface
         $processed = match ($this->mode) {
             self::MODE_ENCRYPT => $this->encryptClosingData(),
             self::MODE_DECRYPT => $this->decryptClosingData(),
-            default => false
+            default            => false
         };
 
         if ($processed === false) {
@@ -200,11 +205,9 @@ class OpenSslEncrypter extends php_user_filter implements EncrypterInterface
 
         // Handle IV for decryption: extract it from the first block of data
         if ($this->mode === self::MODE_DECRYPT) {
-
             $bucket = stream_bucket_make_writeable($in);
 
             if ($bucket !== null) {
-
                 $this->buffer .= $bucket->data;
                 $consumed += strlen($bucket->data);
 

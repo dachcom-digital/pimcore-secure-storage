@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * This source file is available under two different licenses:
+ *   - GNU General Public License version 3 (GPLv3)
+ *   - DACHCOM Commercial License (DCL)
+ * Full copyright and license information is available in
+ * LICENSE.md which is distributed with this source code.
+ *
+ * @copyright  Copyright (c) DACHCOM.DIGITAL AG (https://www.dachcom-digital.com)
+ * @license    GPLv3 and DCL
+ */
+
 namespace SecureStorageBundle\DependencyInjection\CompilerPass;
 
 use League\Flysystem\Local\LocalFilesystemAdapter;
@@ -30,7 +41,6 @@ final class FlysystemStoragePass implements CompilerPassInterface
         $encrypter::configureOptions($optionsResolver);
 
         foreach ($securedStorageConfig['secured_fly_system_storages'] as $storageConfig) {
-
             $adapterName = sprintf('flysystem.adapter.%s', $storageConfig['storage']);
             $securedAdapterName = sprintf('flysystem.adapter.secured.%s', $storageConfig['storage']);
 
