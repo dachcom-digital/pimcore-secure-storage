@@ -1,5 +1,6 @@
 # Pimcore Secure Storage Bundle
 [![Software License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Software License](https://img.shields.io/badge/license-DCL-white.svg?style=flat-square&color=%23ff5c5c)](LICENSE.md)
 [![Latest Release](https://img.shields.io/packagist/v/dachcom-digital/secure-storage.svg?style=flat-square)](https://packagist.org/packages/dachcom-digital/secure-storage)
 
 ### Release Plan
