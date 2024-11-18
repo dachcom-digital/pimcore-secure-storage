@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * This source file is available under two different licenses:
+ *   - GNU General Public License version 3 (GPLv3)
+ *   - DACHCOM Commercial License (DCL)
+ * Full copyright and license information is available in
+ * LICENSE.md which is distributed with this source code.
+ *
+ * @copyright  Copyright (c) DACHCOM.DIGITAL AG (https://www.dachcom-digital.com)
+ * @license    GPLv3 and DCL
+ */
+
 namespace SecureStorageBundle\Maintenance;
 
 use League\Flysystem\FilesystemOperator;
@@ -38,11 +49,9 @@ class ProtectPublicDirectoriesTask implements TaskInterface
         ];
 
         foreach ($storages as $storageName) {
-
             $storage = $this->getStorage($storageName);
 
             if ($protectedPath === '/') {
-
                 $secureFilePath = '.htaccess';
                 if (!$storage->fileExists($secureFilePath)) {
                     $storage->write($secureFilePath, $data, ['bypass_secured_adapter' => true]);
