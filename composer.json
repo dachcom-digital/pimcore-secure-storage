@@ -3,7 +3,7 @@
     "type": "pimcore-bundle",
         "license": [
         "GPL-3.0-or-later",
-        "DCL"
+        "proprietary"
     ],
     "description": "Pimcore Security Storage Bundle",
     "keywords": ["pimcore", "security", "flystem", "encryption"],
