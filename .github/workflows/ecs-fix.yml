@@ -27,20 +27,18 @@ jobs:
 
             -   name: Run ECS
                 run: |
-                    ls -la
-                    ls -la src
-                    vendor/bin/ecs check --fix src --config src/ecs.php
+                    vendor/bin/ecs check src --fix --config ecs.php
 
-            #-   name: Create Pull Request
-            #    uses: peter-evans/create-pull-request@v4
-            #    with:
-            #        commit-message: '[CS] Refactor'
-            #        author: DACHCOM Bot <bot@dachcom.ch>
-            #        title: '[CS] Refactor'
-            #        body: |
-            #            This PR has been generated automatically to fix code-styles
-            #        labels: |
-            #            Enhancement
-            #        branch: coding-standard/refactor-${{ matrix.branch }}
-            #        delete-branch: true
-            #        base: ${{ matrix.branch }}
+            -   name: Create Pull Request
+                uses: peter-evans/create-pull-request@v4
+                with:
+                    commit-message: '[CS] Refactor'
+                    author: DACHCOM Bot <bot@dachcom.ch>
+                    title: '[CS] Refactor'
+                    body: |
+                        This PR has been generated automatically to fix code-styles
+                    labels: |
+                        Enhancement
+                    branch: coding-standard/refactor-${{ matrix.branch }}
+                    delete-branch: true
+                    base: ${{ matrix.branch }}
