@@ -2,7 +2,7 @@ name: Easy Coding Standards
 on:
     schedule:
         -   cron: '0 0 * * SUN'
-    workflow_dispatch: ~
+    workflow_dispatch:
 
 jobs:
     ecs-fix:
