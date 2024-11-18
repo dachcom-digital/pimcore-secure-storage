@@ -1,0 +1,50 @@
+name: Easy Coding Standards
+on:
+    schedule:
+        -   cron: '0 0 * * SUN'
+    workflow_dispatch:
+
+jobs:
+    ecs-fix:
+        runs-on: ubuntu-latest
+        name: "Coding standard refactor"
+        timeout-minutes: 5
+        strategy:
+            fail-fast: false
+            matrix:
+                branch: [ '4.0' ]
+        steps:
+            -   uses: actions/checkout@v4
+                with:
+                    ref: ${{ matrix.branch }}
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.3
+
+            -   name: Composer install
+                run: composer install --no-interaction --no-scripts
+
+            -   name: Run ECS
+                run: vendor/bin/ecs check --fix src --config src/ecs.php
+
+            -   name: Create Pull Request
+                uses: peter-evans/create-pull-request@v4
+                with:
+                    commit-message: '[CS] Refactor'
+                    author: DACHCOM Bot <bot@dachcom.ch>
+                    title: '[CS] Refactor'
+                    body: |
+                        This PR has been generated automatically to fix code-styles
+                    labels: |
+                        Enhancement
+                    branch: coding-standard/refactor-${{ matrix.branch }}
+                    delete-branch: true
+                    base: ${{ matrix.branch }}
+
+
+            -   name: Easy Coding Standard Check
+                continue-on-error: true
+                run: |
+                    vendor/bin/ecs check ${{ github.workspace }}/lib/test-bundle/src --config ${{ github.workspace }}/lib/test-bundle/ecs.php
