@@ -1,7 +1,7 @@
 {
     "name": "dachcom-digital/secure-storage",
     "type": "pimcore-bundle",
-        "license": [
+    "license": [
         "GPL-3.0-or-later",
         "proprietary"
     ],
