@@ -7,3 +7,6 @@ parameters:
     symfony:
         containerXmlPath: %currentWorkingDirectory%/var/cache/test/TestKernelTestDebugContainer.xml
         constantHassers: false
+    ignoreErrors:
+        - '#Call to static method buildForEntity\(\) on an unknown class I18nBundle\\Builder\\RouteParameterBuilder\.#'
+        - '#Parameter \&\$consumed by-ref type of method SecureStorageBundle\\Encrypter\\OpenSslEncrypter::filter\(\) expects int, int\|null given\.#'
