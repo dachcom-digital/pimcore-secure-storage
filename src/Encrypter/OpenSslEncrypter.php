@@ -189,7 +189,7 @@ class OpenSslEncrypter extends php_user_filter implements EncrypterInterface
         return $processed;
     }
 
-    private function handleIv($in, $out, int &$consumed): void
+    private function handleIv($in, $out, ?int &$consumed): void
     {
         if ($this->iv !== null) {
             return;
